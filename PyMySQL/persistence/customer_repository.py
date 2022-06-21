@@ -20,3 +20,8 @@ class UserRepository:
         result = self.db.executeAll(sql)
         print(result)
         return result
+
+    def get_customer_region(self, region):
+        SQL ="SELECT productName FROM products INNER JOIN orderdetails od on products.productCode = od.productCode INNER JOIN orders o on od.orderNumber = o.orderNumber INNER JOIN customers c on o.customerNumber = c.customerNumber WHERE c.customerName = 'Herkku Gifts'"
+        self.db.executeAll(SQL)
+        return
