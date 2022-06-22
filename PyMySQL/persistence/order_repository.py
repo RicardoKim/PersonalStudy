@@ -7,7 +7,7 @@ class OrderRepository:
         result = self.db.executeAll(SQL)
         return result
 
-    def test(self):
+    def gettest(self):
         SQL = "SELECT orderNumber, productName,  ProductsCount ,contribution " \
               "FROM (SELECT  orderNumber, productCode, " \
               "(SELECT Count(*) FROM orderdetails WHERE OrderNumber = Main.orderNumber) As 'ProductsCount', " \
@@ -18,3 +18,4 @@ class OrderRepository:
               "WHERE ProductsCount > 2 AND Contribution > 50"
         result = self.db.executeAll(SQL)
         return
+
