@@ -11,12 +11,11 @@ def client():
     yield client
 
 
-def work(client, url):
+def work(url):
     client.get(url)
     return
 
 
 def test_get_customer_info(client):
-    for i in range(100):
-        work(client, '/customer/payment')
+    client.get("/customer")
     return
