@@ -1,6 +1,7 @@
 # PyMySQL
 
 최초 작성날짜 : 2022년 6월 18일
+최종 수정날짜 : 2022년 6월 22일
 
 문제 구현에 사용한 데이터 베이스는 MySQL Sample Database에서 가져왔습니다.
 <br>
@@ -110,7 +111,7 @@ query를 보낼때 이를 thread lock을 걸어서 실행시키도록 했을 때
 
 > 🤷 pymysql은 왜 multithread를 지원하지 못하는가
 
-그럼 Packet sequence number wrong 에 집중을 해보자
+그럼 위에서 발생한 오류인 Packet sequence number wrong 에 집중을 해보자
 <br>
 해당 오류가 발생하는 소스코드의 부분을 보면 아래와 같다.
 

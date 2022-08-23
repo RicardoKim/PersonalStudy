@@ -4,7 +4,7 @@ class OrderRepository:
 
     def getorder(self):
         SQL = 'SELECT orderNumber, shippedDate, status FROM orders'
-        result = self.db.executeAll(SQL)
+        result = self.db.execute(SQL)
         return result
 
     def gettest(self):
@@ -16,6 +16,6 @@ class OrderRepository:
               "FROM orderdetails Main ORDER BY  orderNumber )  " \
               "DataTable INNER JOIN products ON products.productCode = DataTable.productCode " \
               "WHERE ProductsCount > 2 AND Contribution > 50"
-        result = self.db.executeAll(SQL)
+        result = self.db.execute(SQL)
         return
 
