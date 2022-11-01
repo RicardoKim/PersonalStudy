@@ -1,0 +1,71 @@
+<p data-ke-size="size16"><a href="https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP" target="_blank" rel="noopener">https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP</a></p>
+<figure id="og_1667266806314" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[보안] 암호(1) Perfect Secret과 OTP" data-og-description="암호학 분야에서 우리가 암호 알고리즘을 이야기 하기에 앞써 어떤 암호화 방식이 완벽한 비밀 유지가 가능한지를 이야기 해야한다. 따라서 이번 글에서는 Perfect Secret이란 무엇인지, OTP가 무엇" data-og-host="me-analyzingdata.tistory.com" data-og-source-url="https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP" data-og-url="https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP" data-og-image="https://scrap.kakaocdn.net/dn/b5NP0e/hyQpyeaiRm/ya9zy6B9pdp8UwY01Kasp0/img.png?width=710&amp;height=392&amp;face=0_0_710_392,https://scrap.kakaocdn.net/dn/OK8aU/hyQprF7mZW/RKbGtdljB9Pu89zykDD4YK/img.png?width=710&amp;height=392&amp;face=0_0_710_392,https://scrap.kakaocdn.net/dn/bVtTo9/hyQpCt7jgY/XH6YKK2ZcRoLRqpDDTR3Y0/img.png?width=710&amp;height=392&amp;face=0_0_710_392"><a href="https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP" target="_blank" rel="noopener" data-source-url="https://me-analyzingdata.tistory.com/entry/%EB%B3%B4%EC%95%88-%EC%95%94%ED%98%B81-Perfect-Secret%EA%B3%BC-OTP">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/b5NP0e/hyQpyeaiRm/ya9zy6B9pdp8UwY01Kasp0/img.png?width=710&amp;height=392&amp;face=0_0_710_392,https://scrap.kakaocdn.net/dn/OK8aU/hyQprF7mZW/RKbGtdljB9Pu89zykDD4YK/img.png?width=710&amp;height=392&amp;face=0_0_710_392,https://scrap.kakaocdn.net/dn/bVtTo9/hyQpCt7jgY/XH6YKK2ZcRoLRqpDDTR3Y0/img.png?width=710&amp;height=392&amp;face=0_0_710_392');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">[보안] 암호(1) Perfect Secret과 OTP</p>
+<p class="og-desc" data-ke-size="size16">암호학 분야에서 우리가 암호 알고리즘을 이야기 하기에 앞써 어떤 암호화 방식이 완벽한 비밀 유지가 가능한지를 이야기 해야한다. 따라서 이번 글에서는 Perfect Secret이란 무엇인지, OTP가 무엇</p>
+<p class="og-host" data-ke-size="size16">me-analyzingdata.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">앞썬 글에서 우리는 Perfect Secret과 OTP에 대해서 이야기 했고 이들이 구현하기에 매우 힘든 암호 알고리즘이라는 것을 알았다.</p>
+<p data-ke-size="size18">이를 보다 현실적으로 구현한 암호화 알고리즘인 RC4를 이야기해보겠다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<h3 data-ke-size="size23">Stream Cipher</h3>
+<p data-ke-size="size16">앞써 이야기한 OTP 처럼 Byte단위로 암호화하는 것을 Stream Cipher라고 이야기한다.</p>
+<p>[##_Image|kage@AwdtK/btrP3TD4YWs/8HQWCmsD9PKbqTw0rvok0k/img.png|CDM|1.3|{"originWidth":700,"originHeight":345,"style":"alignCenter","caption":"https://www.javatpoint.com/block-cipher-vs-stream-cipher"}_##]</p>
+<p data-ke-size="size16">이들은 처음 Seed를 바탕으로 key를 만들어내는 Keystream generator가 존재하고 여기서 생성된 keystream이 byte단위로 적용된다.</p>
+<p data-ke-size="size16">전 글에서 이야기한 것처럼 완벽한 난수를 생성하는 문제를 Keystream generator로 해결한 것으로 알 수 있다.</p>
+<p data-ke-size="size16">&nbsp;하지만 이러한 Keystream을 어떻게 구현할 것인지가 알고리즘의 핵심이라고 이야기할 수 있다.</p>
+<p data-ke-size="size16">이러한 Stream Cipher의 대표주자인 RC4를 이야기해보자</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">RC4</h3>
+<p data-ke-size="size16">RC4의 특징은 다음과 같다.</p>
+<p data-ke-size="size16">1. Variable Key-size</p>
+<p data-ke-size="size16">2. Byte-oriented stream cipher</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20">- 알고리즘</h4>
+<p data-ke-size="size16">1. 초기화 과정</p>
+<p data-ke-size="size16">S는 0부터 255까지 숫자가 들어있는 배열을 의미한다.</p>
+<p data-ke-size="size16">T는 Seed가 key의 길이만큼 block단위로 반복해서 들어가 있는 배열을 의미한다.</p>
+<pre id="code_1667267652642" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>for i = 0 to 255
+do
+    S[i] = i
+    T[i] = K[i mod keylength]</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p>[##_Image|kage@bteP5R/btrP3SrCnIR/fkOm9BciFk9Ay4UluYrtj0/img.png|CDM|1.3|{"originWidth":1020,"originHeight":314,"style":"alignCenter"}_##]</p>
+<p data-ke-size="size16">2. S에 대한 Permutation 진행</p>
+<pre id="code_1667267752177" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>j = 0
+for i = 0 to 255
+do 
+    j = (j + S[i] + T[i])(mod 256)
+    swap (S[i], S[j])</code></pre>
+<p>[##_Image|kage@Ydnfx/btrP5E0g1yD/Y6K2gh5nTdNUrV452tSfO1/img.png|CDM|1.3|{"originWidth":1032,"originHeight":254,"style":"alignCenter"}_##]</p>
+<p data-ke-size="size16">3. Stream Generation</p>
+<pre id="code_1667267866405" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>i = j = 0
+while
+    i = (i + 1)(mod 256)
+    j = (j + S[i])(mod 256)
+    swap (S[i], S[j])
+    t = (S[i] + S[j])(mod 256)
+    k = S[t]
+    C[i] = M[i] XOR k</code></pre>
+<p>[##_Image|kage@y36qn/btrP3koC3Ed/vwxvZd94pEsLK6hEdvKbq1/img.png|CDM|1.3|{"originWidth":1034,"originHeight":212,"style":"alignCenter"}_##]</p>
+<h4 data-ke-size="size20">-&nbsp; 한계점</h4>
+<p data-ke-size="size16"><b>Lack of diffusion</b></p>
+<p data-ke-size="size16">우리가 평문에서 암호를 XOR등의 방식으로 암호화 하는 과정을 Confusion이라고 한다.</p>
+<p data-ke-size="size16">이러한 Confusion은 글자를 바꾸는 substitution을 통해 구현될 수 있다. 하지만 Stream Cipher의 특성상 Diffusion은 약할 수 밖에 없다.</p>
+<p data-ke-size="size16">Diffusion이란 plaintext에서 한 글자가 바뀜으로써 전체적인 암호문이 얼마나 바뀌는지를 이야기한다.</p>
+<p data-ke-size="size16">Stream Cipher는 byte단위로 암호화 하기 때문에 Diffusion이 고려되지 않는다. 따라서 Chosen-plaintext attack등에 취약할 수 밖에 없다.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">출처</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">성균관대학교 최형기 교수님 정보보호개론 강의(SWE3025)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">긴 글 읽어주셔서 감사합니다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">틀린 부분이 있으면 댓글을 달아주시면 감사하겠습니다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size14"><span>📧 : may3210@g.skku.edu</span><span></span></p>
+<p data-ke-size="size14"><span style="color: #555555;">🔗 :&nbsp;</span><span><a href="https://github.com/RicardoKim" target="_blank" rel="noopener">https://github.com/RicardoKim</a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
